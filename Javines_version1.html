@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple Dashboard</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+
+    /* Header */
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      color: #4f46e5;
+    }
+
+    nav a {
+      margin-left: 25px;
+      text-decoration: none;
+      color: #6b7280;
+      font-size: 15px;
+    }
+
+    nav a:hover {
+      color: #4f46e5;
+    }
+
+    /* Main */
+    main {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 25px;
+    }
+
+    .hero {
+      margin-bottom: 35px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #6b7280;
+      font-size: 16px;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-icon {
+      width: 45px;
+      height: 45px;
+      background: #eef2ff;
+      color: #4f46e5;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+
+    .card h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #6b7280;
+      line-height: 1.5;
+    }
+
+    /* Button */
+    .btn {
+      margin-top: 30px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 8px;
+      background: #4f46e5;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #4338ca;
+    }
+
+    /* Responsive */
+    @media (max-width: 750px) {
+      header {
+        padding: 18px 20px;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">MyInterface</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Features</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Welcome back 👋</h1>
+      <p>A simple and clean interface built with HTML and CSS.</p>
+    </section>
+
+    <section class="cards">
+
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h2>Fast</h2>
+        <p>
+          Lightweight design with a simple structure that loads quickly
+          and works smoothly.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h2>Beautiful</h2>
+        <p>
+          Modern colors, spacing, shadows, and responsive components
+          create a clean visual experience.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h2>Responsive</h2>
+        <p>
+          The interface automatically adapts to desktop, tablet, and
+          mobile screen sizes.
+        </p>
+      </div>
+
+    </section>
+
+    <button class="btn" onclick="showMessage()">
+      Get Started
+    </button>
+  </main>
+
+  <script>
+    function showMessage() {
+      alert("Welcome! Let's get started.");
+    }
+  </script>
+
+</body>
+</html>
+
