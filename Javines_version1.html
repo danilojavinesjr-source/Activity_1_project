@@ -1,262 +1,895 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simple Dashboard</title>
+
+  <title>Animated Dashboard</title>
 
   <style>
+
+    /* =========================
+       BASIC RESET
+    ========================== */
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
+
+    /* =========================
+       BODY
+    ========================== */
+
     body {
       font-family: Arial, sans-serif;
-      background: #f5f7fb;
+
       color: #1f2937;
+
+      min-height: 100vh;
+
+      /* Strong animated gradient */
+      background: linear-gradient(
+        -45deg,
+        #4f46e5,
+        #06b6d4,
+        #ec4899,
+        #8b5cf6,
+        #f97316,
+        #22c55e
+      );
+
+      background-size: 500% 500%;
+
+      animation: movingBackground 8s ease infinite;
+
+      overflow-x: hidden;
     }
 
-    /* Header */
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 18px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+
+    /* =========================
+       MOVING GRADIENT
+    ========================== */
+
+    @keyframes movingBackground {
+
+      0% {
+        background-position: 0% 50%;
+      }
+
+      25% {
+        background-position: 100% 50%;
+      }
+
+      50% {
+        background-position: 100% 100%;
+      }
+
+      75% {
+        background-position: 0% 100%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+
     }
+
+
+    /* =========================
+       FLOATING BACKGROUND
+    ========================== */
+
+    .background-animation {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      z-index: -1;
+    }
+
+
+    .background-animation span {
+      position: absolute;
+
+      display: block;
+
+      width: 250px;
+      height: 250px;
+
+      border-radius: 50%;
+
+      filter: blur(20px);
+
+      opacity: 0.65;
+
+      animation: floating 10s infinite alternate ease-in-out;
+    }
+
+
+    /* Circle 1 */
+
+    .background-animation span:nth-child(1) {
+
+      background: #ff00cc;
+
+      top: 5%;
+      left: 5%;
+
+      animation-duration: 8s;
+
+    }
+
+
+    /* Circle 2 */
+
+    .background-animation span:nth-child(2) {
+
+      background: #00ffff;
+
+      top: 60%;
+      left: 70%;
+
+      animation-duration: 11s;
+
+      animation-delay: 2s;
+
+    }
+
+
+    /* Circle 3 */
+
+    .background-animation span:nth-child(3) {
+
+      background: #ffff00;
+
+      top: 25%;
+      left: 80%;
+
+      animation-duration: 9s;
+
+      animation-delay: 4s;
+
+    }
+
+
+    /* Circle 4 */
+
+    .background-animation span:nth-child(4) {
+
+      background: #7c3aed;
+
+      top: 70%;
+      left: 10%;
+
+      animation-duration: 12s;
+
+      animation-delay: 1s;
+
+    }
+
+
+    /* Circle 5 */
+
+    .background-animation span:nth-child(5) {
+
+      background: #ff6600;
+
+      top: 0%;
+      left: 45%;
+
+      animation-duration: 10s;
+
+      animation-delay: 3s;
+
+    }
+
+
+    /* Circle movement */
+
+    @keyframes floating {
+
+      0% {
+
+        transform:
+          translate(0px, 0px)
+          scale(1);
+
+      }
+
+      50% {
+
+        transform:
+          translate(120px, -80px)
+          scale(1.4);
+
+      }
+
+      100% {
+
+        transform:
+          translate(-80px, 100px)
+          scale(0.8);
+
+      }
+
+    }
+
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+
+      background: rgba(255, 255, 255, 0.80);
+
+      backdrop-filter: blur(15px);
+
+      border-bottom:
+        1px solid
+        rgba(255, 255, 255, 0.5);
+
+      padding: 18px 40px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      position: sticky;
+
+      top: 0;
+
+      z-index: 100;
+
+    }
+
+
+    /* Logo */
 
     .logo {
+
       font-size: 22px;
+
       font-weight: bold;
+
       color: #4f46e5;
+
     }
+
+
+    /* Navigation */
 
     nav a {
+
       margin-left: 25px;
+
       text-decoration: none;
-      color: #6b7280;
+
+      color: #374151;
+
       font-size: 15px;
+
+      font-weight: 500;
+
+      transition: 0.3s;
+
     }
+
 
     nav a:hover {
+
       color: #4f46e5;
+
+      transform: translateY(-2px);
+
     }
 
-    /* Main */
+
+    /* =========================
+       MAIN
+    ========================== */
+
     main {
+
       max-width: 1100px;
+
       margin: 50px auto;
+
       padding: 0 25px;
+
     }
+
+
+    /* =========================
+       HERO
+    ========================== */
 
     .hero {
+
       margin-bottom: 35px;
+
     }
+
 
     .hero h1 {
+
       font-size: 36px;
+
       margin-bottom: 10px;
+
+      color: #ffffff;
+
+      text-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.25);
+
     }
+
 
     .hero p {
-      color: #6b7280;
+
+      color: #ffffff;
+
       font-size: 16px;
+
+      text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.2);
+
     }
 
-    /* Cards */
+
+    /* =========================
+       CARDS
+    ========================== */
+
     .cards {
+
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
       gap: 20px;
+
     }
+
+
+    /* First cards */
 
     .card {
-      background: white;
+
+      background:
+        rgba(255, 255, 255, 0.88);
+
       padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
-      transition: transform 0.2s, box-shadow 0.2s;
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 10px 30px
+        rgba(0, 0, 0, 0.15);
+
+      backdrop-filter: blur(10px);
+
+      transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+
     }
+
+
+    /* Second cards */
 
     .card_2 {
-      background: rgb(189, 101, 101);
+
+      background:
+        rgba(189, 101, 101, 0.90);
+
       padding: 25px;
-      border-radius: 14px;
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-      transition: transform 0.2s, box-shadow 0.2s;
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.18);
+
+      backdrop-filter: blur(10px);
+
+      transition:
+        transform 0.3s,
+        box-shadow 0.3s;
+
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+    /* Card hover */
+
+    .card:hover,
+    .card_2:hover {
+
+      transform:
+        translateY(-10px)
+        scale(1.03);
+
+      box-shadow:
+        0 20px 45px
+        rgba(0, 0, 0, 0.25);
+
     }
+
+
+    /* =========================
+       CARD ICON
+    ========================== */
 
     .card-icon {
-      width: 45px;
-      height: 45px;
+
+      width: 55px;
+
+      height: 55px;
+
       background: #eef2ff;
+
       color: #4f46e5;
-      border-radius: 10px;
+
+      border-radius: 14px;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
-      font-size: 20px;
+
+      font-size: 25px;
+
       margin-bottom: 18px;
+
+      transition:
+        transform 0.4s;
+
     }
 
-    
 
-    .card h2 {
+    /* Icon animation */
+
+    .card:hover .card-icon,
+    .card_2:hover .card-icon {
+
+      transform:
+        rotate(15deg)
+        scale(1.2);
+
+    }
+
+
+    /* =========================
+       CARD TEXT
+    ========================== */
+
+    .card h2,
+    .card_2 h2 {
+
       font-size: 20px;
+
       margin-bottom: 8px;
+
     }
 
-    .card p {
-      color: #6b7280;
+
+    .card p,
+    .card_2 p {
+
+      color: #374151;
+
       line-height: 1.5;
+
     }
 
-    /* Button */
-    .btn {
-      margin-top: 30px;
-      padding: 12px 22px;
+
+    /* =========================
+       DIVIDER
+    ========================== */
+
+    hr {
+
       border: none;
-      border-radius: 8px;
-      background: #4f46e5;
-      color: white;
-      font-size: 15px;
-      cursor: pointer;
+
+      height: 3px;
+
+      border-radius: 5px;
+
+      background:
+        rgba(255, 255, 255, 0.7);
+
+      margin-bottom: 15px;
+
     }
+
+
+    /* =========================
+       BUTTON
+    ========================== */
+
+    .btn {
+
+      margin-top: 30px;
+
+      padding: 14px 25px;
+
+      border: none;
+
+      border-radius: 10px;
+
+      background: #4f46e5;
+
+      color: white;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.3s,
+        background 0.3s,
+        box-shadow 0.3s;
+
+    }
+
 
     .btn:hover {
-      background: #4338ca;
+
+      background: #312e81;
+
+      transform:
+        translateY(-4px)
+        scale(1.05);
+
+      box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.25);
+
     }
 
-    /* Responsive */
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
     @media (max-width: 750px) {
+
       header {
-        padding: 18px 20px;
+
+        padding:
+          18px 20px;
+
       }
+
 
       nav {
+
         display: none;
+
       }
+
 
       .cards {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
+
       }
 
+
       .hero h1 {
+
         font-size: 28px;
+
       }
+
+
+      main {
+
+        margin:
+          30px auto;
+
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
+  <!-- =========================
+       MOVING BACKGROUND
+  ========================== -->
+
+  <div class="background-animation">
+
+    <span></span>
+
+    <span></span>
+
+    <span></span>
+
+    <span></span>
+
+    <span></span>
+
+  </div>
+
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
   <header>
-    <div class="logo">MyInterface</div>
+
+    <div class="logo">
+      MyInterface
+    </div>
+
 
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Features</a>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
+
+      <a href="#">
+        Home
+      </a>
+
+      <a href="#">
+        Features
+      </a>
+
+      <a href="#">
+        About
+      </a>
+
+      <a href="#">
+        Contact
+      </a>
+
     </nav>
+
   </header>
 
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+
   <main>
+
+
+    <!-- HERO -->
+
     <section class="hero">
-      <h1>Welcome back 👋, I am Danilo G. Javines Jr. BSCPE 4B <br> This is my sample HTML project File  </h1>
-      <p>A simple and clean interface built with HTML and CSS.</p>
+
+      <h1>
+
+        Welcome back 👋,
+        I am Danilo G. Javines Jr. BSCPE 4B
+
+        <br>
+
+        This is my sample HTML project File
+
+      </h1>
+
+
+      <p>
+
+        A simple and clean interface built
+        with HTML and CSS.
+
+      </p>
+
     </section>
+
+
+    <!-- FIRST CARDS -->
 
     <section class="cards">
 
-      <div class="card">
-        <div class="card-icon">⚡</div>
-        <h2>Fast</h2>
-        <p>
-          Lightweight design with a simple structure that loads quickly
-          and works smoothly.
-        </p>
-      </div>
 
       <div class="card">
-        <div class="card-icon">🎨</div>
-        <h2>Beautiful</h2>
+
+        <div class="card-icon">
+          ⚡
+        </div>
+
+        <h2>
+          Fast
+        </h2>
+
         <p>
-          Modern colors, spacing, shadows, and responsive components
-          create a clean visual experience.
+
+          Lightweight design with a simple
+          structure that loads quickly and
+          works smoothly.
+
         </p>
+
       </div>
 
+
       <div class="card">
-        <div class="card-icon">📱</div>
-        <h2>Responsive</h2>
+
+        <div class="card-icon">
+          🎨
+        </div>
+
+        <h2>
+          Beautiful
+        </h2>
+
         <p>
-          The interface automatically adapts to desktop, tablet, and
-          mobile screen sizes.
+
+          Modern colors, spacing, shadows,
+          and responsive components create
+          a clean visual experience.
+
         </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          📱
+        </div>
+
+        <h2>
+          Responsive
+        </h2>
+
+        <p>
+
+          The interface automatically adapts
+          to desktop, tablet, and mobile
+          screen sizes.
+
+        </p>
+
       </div>
 
     </section>
+
+
+    <!-- NEW SECTION -->
 
     <section class="hero">
-      <br></br>
-      <hr></hr>
-      <p>This part is a newly added part</p>
 
+      <br>
+
+      <hr>
+
+      <p>
+        This part is a newly added part
+      </p>
 
     </section>
+
+
+    <!-- SECOND CARDS -->
 
     <section class="cards">
 
-      <div class="card_2">
-        <div class="card-icon">⚡</div>
-        <h2>Fast</h2>
-        <p>
-          Lightweight design with a simple structure that loads quickly
-          and works smoothly.
-        </p>
-      </div>
 
       <div class="card_2">
-        <div class="card-icon">🎨</div>
-        <h2>Beautiful</h2>
+
+        <div class="card-icon">
+          ⚡
+        </div>
+
+        <h2>
+          Fast
+        </h2>
+
         <p>
-          Modern colors, spacing, shadows, and responsive components
-          create a clean visual experience.
+
+          Lightweight design with a simple
+          structure that loads quickly and
+          works smoothly.
+
         </p>
+
       </div>
 
+
       <div class="card_2">
-        <div class="card-icon">📱</div>
-        <h2>Responsive</h2>
+
+        <div class="card-icon">
+          🎨
+        </div>
+
+        <h2>
+          Beautiful
+        </h2>
+
         <p>
-          The interface automatically adapts to desktop, tablet, and
-          mobile screen sizes.
+
+          Modern colors, spacing, shadows,
+          and responsive components create
+          a clean visual experience.
+
         </p>
+
+      </div>
+
+
+      <div class="card_2">
+
+        <div class="card-icon">
+          📱
+        </div>
+
+        <h2>
+          Responsive
+        </h2>
+
+        <p>
+
+          The interface automatically adapts
+          to desktop, tablet, and mobile
+          screen sizes.
+
+        </p>
+
       </div>
 
     </section>
 
-    <button class="btn" onclick="showMessage()">
+
+    <!-- BUTTON -->
+
+    <button
+      class="btn"
+      onclick="showMessage()">
+
       Get Started
+
     </button>
+
+
   </main>
 
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
   <script>
+
     function showMessage() {
-      alert("Welcome! Let's get started.");
+
+      alert(
+        "Welcome! Let's get started."
+      );
+
     }
+
   </script>
 
-</body>
-</html>
 
+</body>
+
+</html>
